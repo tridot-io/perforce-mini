@@ -7,7 +7,7 @@ usermod -u $PERFORCE_UID perforce
 groupmod -og $PERFORCE_GID perforce
 
 # if the perforce config file doesn't exist, run the config script
-if [ ! -f /etc/perforce/p4dctl.conf.d/perforce.conf ]; then
+if [ ! -f /etc/perforce/p4dctl.conf.d/$SERVER_ID.conf ]; then
     echo "No perforce config file found, running config script..."
     # copy saved perforce template config file
     cp /opt/perforce/p4d.template /etc/perforce/p4dctl.conf.d/p4d.template

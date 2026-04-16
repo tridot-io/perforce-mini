@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:noble
 
 # Update our main system
 
@@ -11,8 +11,8 @@ RUN apt-get install -y wget gnupg pwgen
 
 # Add perforce repo
 
-RUN wget -qO - https://package.perforce.com/perforce.pubkey | apt-key add -
-RUN echo 'deb http://package.perforce.com/apt/ubuntu focal release' > /etc/apt/sources.list.d/perforce.list
+RUN wget -qO - https://package.perforce.com/perforce.pubkey | gpg --dearmor -o /usr/share/keyrings/perforce.gpg
+RUN echo 'deb [signed-by=/usr/share/keyrings/perforce.gpg] http://package.perforce.com/apt/ubuntu noble release' > /etc/apt/sources.list.d/perforce.list
 RUN apt-get update
 
 # Actually install it

@@ -19,6 +19,16 @@ RUN apt-get update
 
 RUN apt-get install -y helix-p4d
 
+# Install Python 3
+
+RUN apt-get install -y --no-install-recommends \
+    python3 \
+    python3-pip \
+    python3-venv
+
+# Clean up apt cache
+RUN rm -rf /var/lib/apt/lists/*
+
 # Copy p4d.template to a safe place
 RUN mkdir -p /opt/perforce/
 RUN cp /etc/perforce/p4dctl.conf.d/p4d.template /opt/perforce/p4d.template
